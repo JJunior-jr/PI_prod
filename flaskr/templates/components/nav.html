@@ -1,0 +1,54 @@
+<nav>
+    <div class="logo">
+        <span>PI</span>
+        <h1>Projeto Integrador</h1>
+    </div>
+    {% if page == 'login' %}
+    <div class="message">
+        <h3>Bem-vindo!</h3>
+    </div>
+    {% elif page == 'user' %}
+    <div class="nav-buttons">
+        <h6>menu</h6>
+        <button id="dashboard" onclick="redirect('/dashboard')">
+            <i class="fa-light fa-gauge"></i>
+            <span>Dashboard</span>
+        </button>
+        <h6>equipamentos</h6>
+        <button id="equipamentosUser" onclick="redirect('/equipamentosUser')">
+            <i class="fa-light fa-wrench"></i>
+            <span>Equipamentos</span>
+        </button>
+        <button id="userEqpManutencao" onclick="redirect('/userEqpManutencao')">
+            <i class="fa-light fa-wrench"></i>
+            <span>Eqp. em Manutenção</span>
+        </button>
+    </div>
+    {% else %}
+    <div class="nav-buttons">
+        <h6>menu</h6>
+        <button id="dashboardAdm" onclick="redirect('/dashboardAdm')">
+            <i class="fa-light fa-gauge"></i>
+            <span>Dashboard</span>
+        </button>
+        <h6>equipamentos</h6>
+        <button id="equipamentosAdm" onclick="redirect('/equipamentosAdm')">
+            <i class="fa-light fa-wrench"></i>
+            <span>Equipamentos</span>
+        </button>
+        <button id="histRetirada" onclick="redirect('/histRetirada')">
+            <i class="fa-light fa-file-lines"></i>
+            <span>Hist. de Retirada</span>
+        </button>
+        <button id="eqpManutencao" onclick="redirect('/eqpManutencao')">
+            <i class="fa-light fa-gears"></i>
+            <span>Eqp. em Manutenção</span>
+        </button>
+        <h6>usuários</h6>
+        <button id="admUsuarios" onclick="redirect('/admUsuarios')">
+            <i class="fa-light fa-users"></i>
+            <span>Usuários</span>
+        </button>
+    </div>
+    {% endif %}
+</nav>

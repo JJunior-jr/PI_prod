@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PI - {% block title %}Olá mundo{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/root.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/nav.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/container.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/labels.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/graphs.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/forms.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/popup.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/tables.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/components/footer.css')}}">
+</head>
+{% endblock %}
+<body>
+{% include "components/nav.html" %}
+<div class="content">
+    {% if header != 'not_show' %}
+    {% include "components/header.html" %}
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+{% include "components/scripts.html" %}
+{% block scripts %}{% endblock %}
+</html>

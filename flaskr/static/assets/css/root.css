@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "fontawesome/css/all.min.css";
+
+:root {
+    --white: #FFFFFF;
+    --off-white: #F6F6FB;
+    --soft-white: #F1F2F7;
+    --cool-gray: #C8CBD9;
+    --gray: #979797;
+    --orange-marmalade: #EF8F2F;
+    --dusty-pink: #fc6d6d;
+    --forest-green: #458E66;
+    --cerulean-blue: #1C7FAD;
+    --light-periwinkle: #f0f2fb;
+    --pale-lavender: #e3e4f1;
+    --midnight-blue: #1F384C;
+    --dark-slate: #1f2a35;
+    --near-dark-slate: #1a222b
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-slate);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--near-dark-slate);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    background-color: var(--off-white);
+}
+
+.content {
+    width: calc(100% - 280px);
+    height: 100vh;
+    transition: 500ms;
+
+    overflow: hidden !important;
+}

@@ -1,0 +1,29 @@
+#box #graphs {
+    width: 100%;
+    padding: 24px 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px;
+}
+
+#box #graphs > div {
+    width: 100%;
+    height: auto;
+    max-height: 500px !important;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--cool-gray);
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+.apexcharts-toolbar {
+    z-index: 0 !important;
+}
+

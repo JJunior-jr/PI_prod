@@ -1,0 +1,48 @@
+<script src="{{ url_for('static', filename='assets/js/collapseNav.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/accountToggle.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/form.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/popup.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/popupDetail.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/table.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/charts.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/flash.js')}}"></script>
+<script src="{{ url_for('static', filename='assets/js/apexcharts.min.js')}}"></script>
+<script>
+    const locale = window.location.href.split('/')[3]
+    if (locale !== '') {
+        document.getElementById(locale).style.background = 'var(--pale-lavender)'
+        document.getElementById(locale).style.color = 'var(--dark-slate)'
+        document.querySelector('.account-toggle').querySelector('span').innerHTML = "{{session['nome']}}".split(' ')[0]
+        None = null
+        const flashMinhaConta = {{session['_flashes'] | safe}}
+        if (flashMinhaConta !== null && "{{session['message_route']}}".split('/')[3] === locale) {
+            minhaConta(flashMinhaConta)
+        }
+    }
+
+    function minhaConta(message='') {
+        popup([{label: 'Nome', type: 'text'}, {label: 'Email', type: 'email'}, {label: 'Senha', type: 'password'},
+                {label: 'Confirmar Senha', type: 'password'}], ["{{session['nome']}}", "{{session['email']}}"], ['Atualizar'],
+            'Minha Conta',
+            'editarMeuUsuario', message,
+            true);
+
+        const inputs = document.querySelectorAll("input[type='password']");
+
+        inputs.forEach(input => {
+            input.required = false;
+
+            input.addEventListener('input', () => {
+                const anyFilled = Array.from(inputs).some(i => i.value !== '');
+
+                inputs.forEach(i => {
+                    i.required = anyFilled;
+                });
+            });
+        });
+    }
+
+    let redirect = (url) => {
+        window.location.href = url
+    }
+</script>

@@ -1,0 +1,87 @@
+{% set label = labels %}
+{% extends "components/base.html" %}
+{% block title %}Histórico de Retirada de Eqp.{% endblock %}
+{% set labels = 'show_labels' %}
+{% set box_title = 'Histórico de Retirada de Equipamentos' %}
+{% set graphs = 'show_graphs' %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .container #box #graphs {
+            grid-template-rows: 1fr !important;
+            grid-template-areas: 'graph_zero graph_one';
+        }
+
+        .container #box #graphs #graph-0 {
+            grid-area: graph_zero;
+        }
+
+        .container #box #graphs #graph-1 {
+            grid-area: graph_one;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        th {
+            padding: 0 6px;
+        }
+
+        table:last-child tr:nth-child(even) .table-actions {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "components/container.html" %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        charts({{graph | tojson}})
+
+        const data_retirada = {{ data_hist_ret | safe }}
+        const data_divergentes = {{ data_hist_ret_diver | safe }}
+
+        function f() {
+            document.querySelectorAll('.trash').forEach(element => {
+                element.querySelector('.fa-trash').classList.replace('fa-trash', 'fa-check');
+                element.style.background = 'var(--cerulean-blue)'
+                element.title = 'Finalizar ocorrencia'
+            });
+        }
+
+        const tables = [
+            {
+                data: data_retirada,
+                options: {
+                    option: false,
+                    trash: false,
+                    edit: false,
+                    formAction: null,
+                    title: 'Equipamentos Retirados'
+                }
+            },
+            {
+                data: data_divergentes,
+                options: {
+                    option: false,
+                    trash: true,
+                    edit: false,
+                    formAction: 'deletarEqpDiverRetirada',
+                    title: 'Entregas divergentes'
+                }
+            }
+        ];
+
+        tables.forEach(({data, options}, index) => {
+            new Table(data, 1, options);
+            if (index === 1) {
+                document.querySelectorAll('.table-button')[1].style.display = 'none';
+            }
+        });
+
+        document.querySelectorAll('.table-button').forEach(e => {e.style.display = 'none'})
+        f()
+    </script>
+{% endblock %}

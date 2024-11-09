@@ -1,0 +1,55 @@
+{% set label = labels %}
+{% extends "components/base.html" %}
+{% block title %}Equipamentos{% endblock %}
+{% set labels = 'show_labels' %}
+{% set box_title = 'Equipamentos' %}
+{% set graphs = 'show_graphs' %}
+{% block head %}
+    {{super()}}
+    <script>
+        const labels = [{label: 'id', type: 'text'},
+            {label: 'Serial', type: 'text'},
+            {label: 'WI-FI Ip Address', type: 'text'},
+            {label: 'Modelo', type: 'select', options: ['HAND HELD', 'ZEBRA TC21', 'HONEYWELL CT60', 'HONEYWELL EDA61K']},
+            {label: 'Status', type: 'select', options: ['Disponivel', 'Indisponivel'], appear: false},
+            {label: 'Coldre', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Alça', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Touch', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Som', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Vibração', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Gatilho', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Lazer', type: 'select', options: ['Sim', 'Não']}]
+    </script>
+    <style>
+        .container #box #graphs {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: 1fr !important;
+            grid-template-areas: 'graph_zero';
+        }
+
+        .container #box #graphs #graph-0 {
+            grid-area: graph_zero;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+{% include "components/container.html" %}
+{% endblock %}
+{% block scripts %}
+<script>
+    charts({{graph | tojson}})
+
+    let data = {{data_eqp | safe}};
+
+    const table = new Table(data, 1, {
+        option: false,
+        trash: true,
+        edit: true,
+        formAction: 'editarEqp',
+        title: ''
+    });
+
+    None = null
+    flash('{{session['route']}}','resgistrarEqp', {{session['_flashes'] | safe}}, {{session['id_item'] | safe}})
+</script>
+{% endblock %}

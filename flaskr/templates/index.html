@@ -1,0 +1,38 @@
+{% extends "components/base.html" %}
+{% block title %}Logística global e entregas{% endblock %}
+{% set page = 'login' %}
+{% set header = 'not_show' %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .content > .container {
+            max-height: none !important;
+            height: 100vh !important;
+            overflow-y: hidden !important;
+            justify-content: flex-start !important;
+        }
+
+        .content > .container > #box {
+            height: calc(100% - 121px) !important;
+        }
+
+        .content > .container > #box > form {
+            height: 100% !important;
+        }
+    </style>
+{% endblock %}
+{% set label = 'not_show_labels' %}
+{% set header = "not_show" %}
+{% block content %}
+    {% set box_title = 'Login' %}
+    {% include 'components/container.html' %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        let message = ''
+        if ('{{ session['_flashes'] | tojson }}' !== 'null') {
+            message = {{ session['_flashes'] | tojson }}[0][1]
+        }
+        form([{label: 'Email', type: 'email'}, {label: 'Senha', type: 'password'}], [], ['Entrar'], 'login',message, false)
+    </script>
+{% endblock %}

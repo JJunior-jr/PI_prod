@@ -1,0 +1,17 @@
+<div class="container">
+    <h4>{{box_title}}</h4>
+    {% if labels == 'show_labels' %}
+    {% include 'components/labels.html' %}
+    {% endif %}
+    <hr color="C8CBD9" size="1"/>
+    <div id="box">
+        {% block box %}
+        {% if graphs == 'show_graphs'%}
+        {% include 'components/graph.html' %}
+        {% endif %}
+        {% endblock %}
+    </div>
+    {% if footer != 'not_show' %}
+    {% include 'components/footer.html' %}
+    {% endif %}
+</div>

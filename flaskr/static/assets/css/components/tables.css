@@ -1,0 +1,150 @@
+.table-container {
+    width: 100%;
+    margin: 16px 0 32px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.table-container .table-options {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.table-container .table-options div > * {
+    height: 36px;
+    padding: 0 16px;
+
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.table-container .table-options h6 {
+    padding-left: 20px;
+
+    font-size: 17px;
+    font-weight: 500 !important;
+    color: var(--midnight-blue);
+}
+
+.table-container .table-options div button {
+    width: 180px;
+
+    color: var(--white);
+    background-color: var(--dark-slate);
+    text-align: center;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.table-container .table-options div input {
+    width: 360px;
+
+    color: var(--dark-slate);
+    background-color: var(--pale-lavender);
+    border: none;
+}
+
+.table-container .table-options div input:focus {
+    border: 1px solid var(--dark-slate) !important;
+    outline: none;
+}
+
+.table-container .table {
+    width: 100%;
+    margin: 16px 0;
+}
+
+.table-container .table table {
+    width: 100%;
+
+    text-align: center;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-container .table table tr {
+    height: 56px;
+}
+
+.table-container .table table thead tr {
+    background-color: var(--dark-slate);
+    color: var(--white);
+}
+
+.table-container .table table tbody tr {
+    background-color: var(--light-periwinkle);
+}
+
+.table-container .table table tbody tr:nth-child(even) {
+    background-color: var(--pale-lavender);
+}
+
+.table-container .table table tbody tr button {
+    height: 32px;
+    width: 32px;
+    margin: 4px;
+
+    border: 0;
+    font-size: 16px;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.table-container .table table tbody tr .table-actions .edit {
+    background-color: var(--forest-green);
+}
+
+.table-container .table table tbody tr .table-actions .trash {
+    background-color: var(--dusty-pink);
+}
+
+.table-container .table table tbody tr .exemption {
+    background-color: transparent;
+    color: var(--dark-slate);
+    font-size: 24px;
+}
+
+.table-container .table-pagination {
+    width: 100%;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-container .table-pagination button {
+    height: 100%;
+    width: 32px;
+
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--pale-lavender);
+    cursor: pointer;
+}
+
+.table-container .table-pagination button:first-child {
+    border-radius: 5px 0 0 5px;
+    background-color: var(--dark-slate);
+}
+
+.table-container .table-pagination button:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+
+
+
+

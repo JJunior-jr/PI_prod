@@ -1,0 +1,43 @@
+{% extends "components/base.html" %}
+{% block title %}Usuários{% endblock %}
+{% set labels = 'not_show_labels' %}
+{% set box_title = 'Usuários' %}
+{% block head %}
+{{super()}}
+<script>
+    const labels = [{label: 'id', type: 'text'},{label: 'Nome', type: 'name'},{label: 'Email', type: 'email'}, {label: 'UID', type: 'text'},  {label: 'Status', type: 'select', options: ['Usuário', 'Admin']}]
+</script>
+{% endblock %}
+{% block content %}
+{% include "components/container.html" %}
+{% endblock %}
+{% block scripts %}
+
+<script>
+    let data = {{data_users | safe}}
+
+    data = data.filter(item => item.UID !== '{{session['uid']}}');
+    if (data.length === 0) {
+        data = [
+            {
+                "id": "",
+                "nome": "",
+                "email": "",
+                "UID": "",
+                "status": ""
+            }
+        ];
+    }
+
+    const table = new Table(data, 1, {
+        option: false,
+        trash: true,
+        edit: true,
+        formAction: 'editarUser',
+        title: ''
+    });
+
+    None = null
+    flash('{{session['route']}}','resgistrarUser', {{session['_flashes'] | safe}}, {{session['id_item'] | safe}})
+</script>
+{% endblock %}

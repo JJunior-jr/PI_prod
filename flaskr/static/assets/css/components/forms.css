@@ -1,0 +1,110 @@
+form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+form > span {
+    width: 360px;
+    padding: 8px 12px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 13px;
+    text-align: justify;
+    background-color: rgba(227, 132, 132, 0.78);
+    border: 1px solid #e64242;
+    color: var(--off-white);
+    border-radius: 8px;
+}
+
+form .form-inputs {
+    width: 100%;
+    max-height: calc(100% - 42px);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 8px;
+}
+
+form .form-inputs>* {
+    flex: 0 0 360px;
+}
+
+form .form-inputs div label,
+form .option {
+    width: 360px;
+
+    text-align: start;
+    color: var(--midnight-blue);
+    font-weight: 300;
+    cursor: pointer;
+}
+
+form .form-inputs div label{
+    font-size: 13px;
+}
+
+form .option {
+    font-size: 12px;
+    background: none;
+    border: none;
+}
+
+form .form-inputs div input,
+form .form-inputs div select,
+form .form-inputs div textarea{
+    width: 360px;
+    height: 42px;
+    margin-top: 8px;
+
+    border-radius: 5px;
+    padding: 8px;
+    color: var(--near-dark-slate);
+    background-color: var(--pale-lavender);
+    border: none;
+    font-size: 13px;
+}
+
+form .form-inputs div select {
+    cursor: pointer;
+}
+
+form .form-inputs div input:focus,
+form .form-inputs div select:focus {
+    border: 1px solid var(--dark-slate) !important;
+    outline: none;
+}
+
+form .form-buttons {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    gap: 8px;
+}
+
+form .form-buttons button {
+    width: 180px;
+    height: 42px;
+
+    color: var(--white);
+    background-color: var(--dark-slate);
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}

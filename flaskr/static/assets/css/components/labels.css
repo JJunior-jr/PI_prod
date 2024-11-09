@@ -1,0 +1,47 @@
+.box-labels {
+    width: 100%;
+    max-height: calc(100% - 42px);
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.box-labels>* {
+    height: 100px;
+
+    flex: 0 0 calc(20% - 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.box-labels div:first-child {
+    background-color: var(--cerulean-blue);
+}
+
+.box-labels div:nth-child(2) {
+    background-color: var(--forest-green);
+}
+
+.box-labels div:nth-child(3) {
+    background-color: var(--orange-marmalade);
+}
+
+.box-labels div:nth-child(4) {
+    background-color: var(--dusty-pink);
+}
+
+.box-labels div:last-child {
+    background-color: var(--dark-slate);
+}

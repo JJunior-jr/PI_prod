@@ -1,0 +1,107 @@
+nav {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+
+    background-color: var(--dark-slate);
+    transition: 500ms;
+    left: 0;
+}
+
+nav .logo {
+    width: 100%;
+    height: 51px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+    background-color: var(--near-dark-slate);
+}
+
+nav .logo h1 {
+    color: var(--white);
+    font-weight: 700 !important;
+}
+
+nav .logo span {
+    margin-right: 12px;
+    height: 30px;
+    width: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--dark-slate);
+    font-weight: 700;
+    font-size: 14px;
+    background-color: var(--white);
+    border-radius: 50%;
+}
+
+nav .message {
+    width: 100%;
+    height: calc(100% - 200px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav .message h3 {
+    font-weight: 400 !important;
+    color: var(--white);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+nav .nav-buttons {
+    width: 100%;
+    margin-top: 12px;
+    padding: 0 20px 12px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+nav .nav-buttons h6 {
+    padding: 5px 18px;
+
+    color: var(--soft-white);
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700 !important;
+}
+
+nav .nav-buttons button {
+    width: 100%;
+    padding: 12px 18px;
+
+    display: flex;
+    align-items: center;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: start;
+
+    font-size: 13px;
+    color: var(--white);
+    border-radius: 8px;
+    transition: 500ms;
+}
+
+nav .nav-buttons button:hover {
+    background-color: var(--pale-lavender);
+    color: var(--dark-slate);
+}
+
+nav .nav-buttons button i {
+    margin-right: 12px;
+    font-size: 20px;
+}

@@ -1,0 +1,84 @@
+{% set label = labels %}
+{% extends "components/base.html" %}
+{% block title %}Equipamentos{% endblock %}
+{% set labels = 'show_labels' %}
+{% set box_title = 'Retirar equipamentos' %}
+{% set page = 'user' %}
+{% set graphs = 'show_graphs' %}
+{% block head %}
+    {{ super() }}
+    <script>
+        let labels = [
+            {label: 'id', type: 'text'},
+            {label: 'UID do responsável', type: 'text'}
+        ]
+
+        const labels_entrega = [
+            {label: 'id', type: 'text'},
+            {label: 'Coldre', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Alça', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Touch', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Som', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Vibração', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Gatilho', type: 'select', options: ['Sim', 'Não']},
+            {label: 'Lazer', type: 'select', options: ['Sim', 'Não']}
+
+        ]
+    </script>
+    <style>
+        .container #box #graphs {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: 1fr !important;
+            grid-template-areas: 'graph_zero';
+        }
+
+        .container #box #graphs #graph-0 {
+            grid-area: graph_zero;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "components/container.html" %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        charts({{graph | tojson}})
+
+        let data = {{data_eqp | safe}};
+
+        function f() {
+            document.querySelectorAll('.edit').forEach(element => {
+                element.querySelector('.fa-pencil').classList.replace('fa-pencil', 'fa-check');
+                element.style.background = 'var(--cerulean-blue)'
+                element.title = 'Retirar Equipamento'
+            });
+
+            document.querySelector('tbody').querySelectorAll('tr').forEach((e, index) => {
+                const element = e.querySelector('.edit')
+                if (e.querySelectorAll('td')[4].textContent === 'Disponivel') {
+                    element.setAttribute('onclick', `popup(${JSON.stringify(labels).replace(/"/g, "'")}, ['${data[index]['id']}'], ['Retirar'], 'Retirar Equipamento', 'retirarEqp', '', true)`)
+                } else if (e.querySelectorAll('td')[4].textContent === 'Indisponivel') {
+                    element.setAttribute('onclick', `popup(${JSON.stringify(labels_entrega).replace(/"/g, "'")}, ['${data[index]['id']}'], ['Entregar'], 'Entregar Equipamento', 'entregarEqp', '', true)`)
+                    element.querySelector('.fa-check').classList.replace('fa-check', 'fa-xmark');
+                    element.style.background = 'var(--dusty-pink)'
+                    element.title = 'Entregar Equipamento'
+                }
+            })
+        }
+
+        const table = new Table(data, 1, {
+            option: false,
+            trash: false,
+            edit: true,
+            formAction: 'retirarEqp',
+            title: ''
+        });
+
+        document.querySelectorAll('.table-button')[0].style.display = 'none';
+
+        f()
+
+        None = null
+        flash('{{session['route']}}', 'retirarEqp', {{session['_flashes'] | safe}}, {{session['id_item'] | safe}})
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% set label = labels %}
+{% extends "components/base.html" %}
+{% block title %}Dashboard Admin{% endblock %}
+{% block head %}
+{{super()}}
+<style>
+    .container #box #graphs {
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: 'graph_zero graph_one'
+                             'graph_two graph_three'
+                             'graph_four graph_four';
+    }
+
+    .container #box #graphs #graph-0 {
+        grid-area: graph_zero;
+    }
+
+    .container #box #graphs #graph-1 {
+        grid-area: graph_one;
+    }
+
+    .container #box #graphs #graph-2 {
+        grid-area: graph_two;
+    }
+
+    .container #box #graphs #graph-3 {
+        grid-area: graph_three;
+    }
+
+    .container #box #graphs #graph-4 {
+        grid-area: graph_four;
+    }
+</style>
+{% endblock %}
+{% set labels = 'show_labels' %}
+{% set graphs = 'show_graphs' %}
+{% set box_title = 'Dashboard' %}
+{% block content %}
+{{super()}}
+{% include 'components/container.html' %}
+{% endblock %}
+{% block scripts %}
+<script>
+    charts({{graph | tojson}})
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% set label = labels %}
+{% extends "components/base.html" %}
+{% block title %}Equipamentos em Manutenção{% endblock %}
+{% set labels = 'show_labels' %}
+{% set box_title = 'Equipamentos em Manutenção' %}
+{% set graphs = 'show_graphs' %}
+{% set page = 'user' %}
+{% block head %}
+    {{ super() }}
+    <script>
+        const labels = [{label: 'id', type: 'text'},
+            {label: 'Serial', type: 'text'},
+            {
+                label: 'Modelo',
+                type: 'select',
+                options: ['HAND HELD', 'ZEBRA TC21', 'HONEYWELL CT60', 'HONEYWELL EDA61K'],
+                appear: false
+            },
+            {label: 'WI-FI Ip Address', type: 'text', appear: false},
+            {label: 'Data de Entrada na Manutenção', type: 'datetime-local'},
+            {label: 'Observação', type: 'textarea'},]
+    </script>
+    <style>
+        .container #box #graphs {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: 1fr !important;
+            grid-template-areas: 'graph_zero';
+        }
+
+        .container #box #graphs #graph-0 {
+            grid-area: graph_zero;
+        }
+        form .form-inputs {
+            width: 740px;
+        }
+
+        form .form-inputs div:last-child textarea {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "components/container.html" %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        charts({{graph | tojson}})
+
+        const dataEqpMan = {{data_eqp_man | safe}};
+
+        function f() {
+            document.querySelectorAll('.trash').forEach(element => {
+                element.querySelector('.fa-trash').classList.replace('fa-trash', 'fa-check');
+                element.style.background = 'var(--cerulean-blue)'
+                element.title = 'Finalizar ocorrencia'
+            });
+        }
+
+        const tables = [
+            {
+                data: dataEqpMan,
+                options: {
+                    option: true,
+                    trash: true,
+                    edit: false,
+                    formAction: 'editarEqpMan',
+                    title: 'Equipamentos em manutenção'
+                }
+            }
+        ]
+
+        tables.forEach(({data, options}, index) => {
+            new Table(data, 1, options);
+            if (index === 1) {
+                document.querySelectorAll('.table-button')[1].style.display = 'none';
+            }
+        });
+
+        None = null
+        flash('{{session['route']}}', 'resgistrarEqpMan', {{session['_flashes'] | safe}}, {{session['id_item'] | safe}})
+
+        f()
+
+    </script>
+{% endblock %}

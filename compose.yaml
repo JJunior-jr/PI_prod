@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - TZ=America/Sao_Paulo
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root_password
+      - DB_NAME=pi_project
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: >
+      /bin/sh -c "
+      /app/wait-for-db.sh &&
+      flask db init || true &&
+      flask db migrate -m 'Criando tabelas' || true &&
+      flask db upgrade || true &&
+      flask run --host=0.0.0.0"
+      
+  db:
+    image: mariadb:10.5
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=pi_project
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
